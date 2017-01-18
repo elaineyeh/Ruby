@@ -16,13 +16,14 @@
 
  使用 Rails 內建的 Scaffold 功能來幫產生需要的檔案
 
-**打這行指令的時候，記得要先用 cd 到 Rails 專案目錄裡**
+**打這行指令的時候，記得要先用 cd 到 Rails 專案目錄裡**  
+
 `$ rails generate scaffold User name:string email:string tel:string`
 >如果覺得上面那行指令很長，可以濃縮成簡單的指令
 >>1.generate 可以寫成 g
 >>2.如果資料型態是 String 可以省略不寫，但**其他型態則不行**
 
-**變成下面這行指令**
+**變成下面這行指令**  
 `$ rails g scaffold User name email tel:`
 
 ### Step2.把描述具現化
@@ -56,6 +57,7 @@ end
 接著是文章(Post)功能，大致上和使用者作法相同，但還會加上一些這兩個功能之間的關連性。
 
 文章會到哪些資料
+
 | 欄位名稱     | 資料型態    | 說明      |
 |   --       |   --       | --       |
 | title      |字串(String) |文章標題   |
