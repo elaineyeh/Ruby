@@ -69,3 +69,50 @@ end
 **user_id 欄位的目的，是用來讓該編文章跟使用者連結在一起**
 
 ### Step1.使用 Scaffold
+`$ rails g scaffold Post title content:text user:references is_available:bollean`
+
+**雖然 user_id 也可以用 user_id:integer，但使用 user:references 可以完成更多細節**
+
+### Step2.把描述具現化  
+
+`$ rails db:migrate
+`
+### Step3.檢視成果
+
+**不過！**  
+在 user 那裡有個有點像亂碼的東西，可以修正一下程式碼，讓它顯示出使用者的姓名：
+
+```
+請打開專案的 app/views/posts/index.html.erb 檔案，把 post.user 改成 post.user.name
+```
+
+```ruby
+<% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.is_available %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+```
+
+**如果！**
+你不想用使用者名稱，也可以改成使用者編號甚至是電子信箱
+
+```ruby
+<% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= post.user.id %></td>
+        <td><%= post.is_available %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+```
